@@ -1,7 +1,7 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.persistence.entity.Role;
-import com.example.demo.persistence.entity.User;
+import com.example.demo.persistence.Role;
+import com.example.demo.persistence.User;
 import com.example.demo.persistence.repository.RoleRepository;
 import com.example.demo.persistence.repository.UserRepository;
 import com.example.demo.service.UserService;

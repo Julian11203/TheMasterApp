@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.persistence.entity.User;
+import com.example.demo.persistence.User;
 import com.example.demo.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,10 +31,15 @@ public class UserController {
         }
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.save(user));
     }
+    @PostMapping("/register")
+    public ResponseEntity<?> register(@Valid @RequestBody User user, BindingResult result){
+        user.setAdmin(false);
+        return save(user, result);
+    }
     private ResponseEntity<?> validation(BindingResult result){
         Map<String, String> errors = new HashMap<>();
         result.getFieldErrors().forEach(error -> {
-            errors.put(error.getField(), "El campo "+error.getDefaultMessage());
+            errors.put(error.getField(), error.getDefaultMessage());
         });
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(errors);
     }
